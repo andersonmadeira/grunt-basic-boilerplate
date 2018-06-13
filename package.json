@@ -2,7 +2,7 @@
   "name": "hello-grunt",
   "version": "1.0.0",
   "description": "Hello world project for grunt",
-  "author": "Anderson Madeira <anderson.madeira@geq.com.br>",
+  "author": "Anderson Madeira <andersonmadeiracs@gmail.com>",
   "license": "MIT",
   "main": "index.js",
   "keywords": [
@@ -11,9 +11,6 @@
     "tasks",
     "js"
   ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "devDependencies": {
     "grunt": "~0.4.5",
     "grunt-contrib-cssmin": "^2.2.1",
