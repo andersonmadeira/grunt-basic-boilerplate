@@ -1,21 +1,22 @@
 module.exports = function (grunt) {
     'use strict';
 
-    /* The assets folder must be on the same level as the Gruntfile.js*/
+    /* Working directory that holds all assets */
+    var work_dir = 'assets'
 
-    // configuração do projeto
+    // grunt configuration
     var gruntConfig = {
         pkg: grunt.file.readJSON('package.json'),
         uglify: {
-            min: {
+            all: {
                 options: {
-                    mangle: {
-                        reserved: ['jQuery', 'Backbone'] // jQuery and Backbone names should not change (name mangling), adjust this array to fit your needs
-                    }
+                    mangle: false /*{ // name mangling doesnt work when you're using wordpress' localize_script
+                        reserved: ['jQuery', 'Backbone'] // exceptions for name mangling
+                    }*/
                 },
                 files: [{
                     expand: true,
-                    src: ['assets/**/*.js', '!assets/**/*.min.js'], // Source: all js files under assets except already minified files
+                    src: [work_dir+'/**/*.js', '!'+work_dir+'/**/*.min.js'], // Source: all js files under assets except already minified files
                     dest: '.', // Save files on the same location of original files
                     cwd: '.', // Working dir is here where the Gruntfile is, so dst can match same dir of original files
                     rename: function (dst, src) {
@@ -25,10 +26,10 @@ module.exports = function (grunt) {
             }
         },
         cssmin: {
-            min: {
+            all: {
                 files: [{
                     expand: true,
-                    src: ['assets/**/*.css', '!assets/**/*.min.css'],
+                    src: [work_dir+'/**/*.css', '!'+work_dir+'/**/*.min.css'],
                     cwd: '.',
                     dest: '.',
                     ext: '.min.css'
@@ -42,7 +43,7 @@ module.exports = function (grunt) {
     // carregando plugins
     grunt.loadNpmTasks('grunt-contrib-uglify'); // js min
     grunt.loadNpmTasks('grunt-contrib-cssmin'); // css min
-    grunt.loadNpmTasks('grunt-newer');
+    grunt.loadNpmTasks('grunt-newer'); // only new changes
 
     // tarefas
     grunt.registerTask('default', ['newer:uglify', 'newer:cssmin']);
