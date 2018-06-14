@@ -10,7 +10,7 @@ module.exports = function (grunt) {
             min: {
                 options: {
                     mangle: {
-                        reserved: ['jQuery','Backbone'] // jQuery and Backbone names should not change (name mangling), adjust this array to fit your needs
+                        reserved: ['jQuery', 'Backbone'] // jQuery and Backbone names should not change (name mangling), adjust this array to fit your needs
                     }
                 },
                 files: [{
@@ -22,15 +22,6 @@ module.exports = function (grunt) {
                         return dst + '/' + src.replace('.js', '.min.js'); // minified file will be .min.js
                     }
                 }]
-            },
-            bundle: {
-                options: {
-                    sourceMap: false, // no source maps or banner, just minified styles
-                    banner: '' // no banner
-                },
-                files: { // get all js files and assets and bundle into one minified js file
-                    'dist/assets/js/bundle.min.js': ['assets/js/**/*.js'],
-                }
             }
         },
         cssmin: {
@@ -42,24 +33,17 @@ module.exports = function (grunt) {
                     dest: '.',
                     ext: '.min.css'
                 }]
-            },
-            bundle: {
-                options: {
-                    banner: '/*! MyLib.js 1.0.0 | Anderson Madeira (@andersonmadeira) | MIT Licensed */'
-                },
-                files: {
-                    'dist/assets/css/bundle.min.css': ['src/assets/css/**/*.css']
-                }
             }
         }
     };
 
-    grunt.initConfig(gruntConfig); 
+    grunt.initConfig(gruntConfig);
 
     // carregando plugins
     grunt.loadNpmTasks('grunt-contrib-uglify'); // js min
     grunt.loadNpmTasks('grunt-contrib-cssmin'); // css min
+    grunt.loadNpmTasks('grunt-newer');
 
     // tarefas
-    grunt.registerTask('default', ['uglify', 'cssmin']);
+    grunt.registerTask('default', ['newer:uglify', 'newer:cssmin']);
 };
