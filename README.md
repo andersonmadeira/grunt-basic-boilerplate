@@ -1,4 +1,4 @@
-# Hello Grunt
+# Grunt Getting Started
 
 This project shows you how to use grunt to minify and bundle js or css into one single file.
 
