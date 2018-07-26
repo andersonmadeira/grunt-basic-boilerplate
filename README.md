@@ -2,19 +2,19 @@
 
 This project shows you how to use grunt to minify and bundle js or css into one single file.
 
-Clone the project and issue the following commands:
+Clone the project and fire the following commands:
 
 ```shell
 npm install
 ```
 
-to install dev deps, then:
+to install dev dependencies, then:
 
 ```shell
 grunt
 ```
 
-to run all tasks or fire one of these tasks:
+to run all tasks or one of these tasks:
 
 ```shell
 grunt uglify:min
